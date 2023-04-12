@@ -1,5 +1,5 @@
 from typing import Optional, List
-#https://www.techiedelight.com/print-all-paths-from-root-to-leaf-nodes-binary-tree/
+
 #https://leetcode.com/problems/binary-tree-paths/
 
 

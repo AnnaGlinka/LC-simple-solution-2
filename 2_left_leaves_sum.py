@@ -2,7 +2,6 @@ from typing import Optional
 #https://leetcode.com/problems/sum-of-left-leaves/
 #O(n)
 #O(h)
-
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
@@ -10,24 +9,22 @@ class TreeNode:
         self.right = right
         
 class Solution:
+   
+    def is_leaf(self, node: Optional[TreeNode]) -> bool:
+        if node is None:
+            return False
+        if node.left is None and node.right is None:
+            return True
+        return False
 
     def sumOfLeftLeaves(self, root: Optional[TreeNode]) -> int:
         sum = 0
-        stuck = []
         if root is not None:
-            stuck.append(root)
-        while stuck:
-            current = stuck.pop()
-               
-            if current.left is not None:
-                stuck.append(current.left)
-                
-                if current.left.left is None and current.left.right is None:
-                    sum += current.left.val
-                    
-            if current.right is not None:
-                stuck.append(current.right)
-
+            if self.is_leaf(root.left):
+                sum += root.left.val
+            else:
+                sum += self.sumOfLeftLeaves(root.left)  
+            sum += self.sumOfLeftLeaves(root.right)
         return sum
     
 

@@ -1,6 +1,8 @@
 from typing import Optional, List
 
+
 class TreeNode:
+
     def __init__(self, val=0, left=None, right=None):
         self.val = val
         self.left = left
@@ -8,23 +10,24 @@ class TreeNode:
 
 
 class Solution:
+
     def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         result, stack = [], []
-        
+
         while root != None or stack != None:
-           
+
             while root != None:
                 stack.append(root)
                 result.append(root.val)
                 root = root.left
-        
+
             if not stack:
                 return result
-            
+
             node = stack.pop()
             print("node=", node.val)
             root = node.right
-        
+
         return result
 
 
@@ -38,7 +41,6 @@ root.right.right = TreeNode(7)
 
 s = Solution()
 print(s.preorderTraversal(root))
-
 
 root2 = TreeNode(5)
 root2.right = TreeNode(6)
