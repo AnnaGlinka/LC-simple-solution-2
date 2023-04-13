@@ -1,4 +1,11 @@
 from typing import Optional, List
+#https://leetcode.com/problems/binary-tree-preorder-traversal/submissions/933036762/
+
+# Create an empty stack nodeStack and push root node to stack. 
+# Do the following while nodeStack is not empty. 
+# Pop an item from the stack and print it. 
+# Push right child of a popped item to stack 
+# Push left child of a popped item to stack
 
 
 class TreeNode:
@@ -13,23 +20,20 @@ class Solution:
 
     def preorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         result, stack = [], []
-
-        while root != None or stack != None:
-
-            while root != None:
-                stack.append(root)
-                result.append(root.val)
-                root = root.left
-
-            if not stack:
-                return result
-
-            node = stack.pop()
-            print("node=", node.val)
-            root = node.right
-
+        if root is None:
+            return result
+        stack.append(root)
+        while stack:
+            parent = stack.pop()
+            result.append(parent.val)
+            if parent.right:
+                stack.append(parent.right)
+            if parent.left:
+                stack.append(parent.left)
         return result
+            
 
+    
 
 root = TreeNode(1)
 root.left = TreeNode(2)
